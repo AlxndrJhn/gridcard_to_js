@@ -66,7 +66,11 @@ const recognize = async ({ target: { files } }) => {
       const {
         data: { text },
       } = await worker.recognize(blob);
-      processResult(text);
+      try {
+        processResult(text);
+      } catch (error) {
+        jsoutput.value = "Error: " + error.message;
+      }
       console.log(text);
     });
   };
