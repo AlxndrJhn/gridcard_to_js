@@ -1,26 +1,48 @@
 <html>
   <head>
+    <link rel="stylesheet" href="main.css" />
     <script src="tesseract.min.js"></script>
+    <script defer src="marvinj-1.0.js"></script>
+    <script defer src="main.js"></script>
+    <title>Grid Card to JS bookmark</title>
   </head>
   <body>
-    <input type="file" id="uploader">
-    <script>
+    <h1>Grid Card to JS bookmark v0.1 by Alex360</h1>
+    <p>
+      This tool converts an image of your gridcard to a javascript bookmark that
+      resolves the grid card challenge automatically for you.
+    </p>
+    <h2>How to use</h2>
+    <ul>
+      <li>Upload an image of your grid card like the example below</li>
+      <li>Note: it is important that the image has the frame</li>
+      <li>Note: the character recognition might fail.</li>
+      <li>On upload a script at the bottom should appear</li>
+      <li>Copy the script and create a bookmark with the script as the URL</li>
+      <li>
+        After you entered your password, click the bookmark to resolve the grid
+        card challenge automatically
+      </li>
+    </ul>
 
-      // This is the most basic example (contains a single function call).
-      // However, in cases when multiple recognition jobs are run,
-      // calling Tesseract.recognize() each time is inefficient. 
-      // See "basic-efficient.html" for a more efficient example. 
-
-      const recognize = async ({ target: { files }  }) => {
-        const { data: { text } } = await Tesseract.recognize(files[0], 'eng', {
-          corePath: 'tesseract-core.wasm.js',
-          workerPath: "worker.min.js",
-          logger: m => console.log(m),
-        });
-        console.log(text);
-      }
-      const elm = document.getElementById('uploader');
-      elm.addEventListener('change', recognize);
-    </script>
+    <img src="example.png" width="300px" />
+    <br />
+    <input type="file" id="uploader" accept="image/png, image/jpeg" />
+    <br />
+    <h2>
+      Cropped section, only the content of the rows and collumns should appear
+      here
+    </h2>
+    <canvas id="cropped"></canvas>
+    <br />
+    <label for="processing">OCR:</label>
+    <progress id="processing" value="0" max="100"></progress>
+    <br />
+    <h2>Bookmark code to solve Gridcard challenge:</h2>
+    <button onclick="copy()">copy</button>
+    <br />
+    <textarea id="textarea" id="" cols="30" rows="10"></textarea>
+    <h2>Creating a bookmark in Chrome looks like this</h2>
+    <img src="bookmark-example.png" alt="" />
   </body>
 </html>
