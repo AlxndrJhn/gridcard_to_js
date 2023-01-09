@@ -99,7 +99,7 @@ function processResult(text) {
 
   // output to text
   let functionTemplate =
-    'javascript: (function () { let gridCard = {{ gridcard }}; document.getElementById("response").value = document.getElementById("nf-dialogue").textContent.match(/\\[[A-Z0-9]{2}\\]/g).map((c) => c.replace(/\\[|\\]/g, "")).map((c) => gridCard[c]).join(""); document.getElementById(\'ns-dialogue-submit\').click()})();';
+    'javascript:(function () { let gridCard = {{ gridcard }}; document.getElementById("response").value = document.getElementById("nf-dialogue").textContent.match(/\\[[A-Z0-9]{2}\\]/g).map((c) => c.replace(/\\[|\\]/g, "")).map((c) => gridCard[c]).join(""); document.getElementById(\'ns-dialogue-submit\').click()})();';
 
   let json = JSON.stringify(dict);
   const unquoted = json.replace(/"([^"]+)":/g, "$1:");
